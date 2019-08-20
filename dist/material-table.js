@@ -67,12 +67,14 @@ function (_React$Component) {
         return _this.onSelectionChange();
       });
     });
-    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "onChangeColumnHidden", function (column, hidden) {
-      _this.dataManager.changeColumnHidden(column, hidden);
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "onChangeColumnHidden", function (columnId, hidden) {
+      if (_this.props.onChangeColumnHidden) {
+        _this.props.onChangeColumnHidden(columnId, hidden);
+      }
 
-      _this.setState(_this.dataManager.getRenderState(), function () {
-        _this.props.onChangeColumnHidden && _this.props.onChangeColumnHidden(column, hidden);
-      });
+      _this.dataManager.changeColumnHidden(columnId, hidden);
+
+      _this.setState(_this.dataManager.getRenderState());
     });
     (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "onChangeGroupOrder", function (groupedColumn) {
       _this.dataManager.changeGroupOrder(groupedColumn.tableData.id);
